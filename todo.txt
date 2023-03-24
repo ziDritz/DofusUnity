@@ -1,0 +1,9 @@
+
+character :
+	initiative
+
+battlehandler :
+	determine l'ordre de jeu
+
+2e healer :
+	boost();
