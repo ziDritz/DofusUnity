@@ -15,7 +15,7 @@ public class Controls : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //controlledC.Heal();
-                controlledC.Heal(CharacterSystem.characters["Undead"]);
+                controlledC.Heal(Character.characters["Undead"]);
                 controlledC.EndTurn();
             }
         }

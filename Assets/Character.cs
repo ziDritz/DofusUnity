@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    // Static
+    public static Dictionary<string, Character> characters = new Dictionary<string, Character>();
+
     // Caracteritics
     public string cName;
     public int basePower;

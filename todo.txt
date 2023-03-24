@@ -1,4 +1,7 @@
 
+character spawner dans game handler
+static dicttionnaire unit dans unit
+
 character :
 	initiative
 

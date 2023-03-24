@@ -7,6 +7,10 @@ public class BattleHandler : MonoBehaviour
 {
     public static BattleHandler Instance;
 
+    // Prefabs
+    [SerializeField] private Transform pfHealer;
+    [SerializeField] private Transform pfUndead;
+
     // State
     public enum State { INIT, HEALERTURN, UNDEADTURN, ENDED }
     private State state;
@@ -18,7 +22,6 @@ public class BattleHandler : MonoBehaviour
         public State state;
     }
 
-
     private void Awake()
     {
         Instance = this;
@@ -26,11 +29,8 @@ public class BattleHandler : MonoBehaviour
 
     private void Start()
     {
-        //Subscribe to events
-        CharacterSystem.Instance.OnCharacterSpawned += ListenCharacter;
-
         state = State.INIT;
-
+        Spawn();
     }
 
     private void Update()
@@ -43,6 +43,21 @@ public class BattleHandler : MonoBehaviour
                 ChangeState(this, new OnStateChangedEA { state = state });
                 break;
         }
+    }
+
+    private void Spawn()
+    {
+        // Spawn Healer
+        Transform healerTransform = Instantiate(pfHealer);
+        Character healer = healerTransform.GetComponent<Character>();
+        healer.OnTurnEnded += ChangeState;
+        Character.characters.Add(healer.cName, healer);
+
+        // Spawn Undead
+        Transform undeadTransform = Instantiate(pfUndead);
+        Character undead = undeadTransform.GetComponent<Character>();
+        undead.OnTurnEnded += ChangeState;
+        Character.characters.Add(undead.cName, undead);
     }
 
     private void ChangeState(object sender, EventArgs e)
@@ -67,9 +82,9 @@ public class BattleHandler : MonoBehaviour
 
     private void IsBattleOver()
     {
-        if (CharacterSystem.characters.ContainsKey("Healer"))
+        if (Character.characters.ContainsKey("Healer"))
         {
-            var healer = CharacterSystem.characters["Healer"];
+            var healer = Character.characters["Healer"];
 
             if (healer.isAlive == false)
             {
@@ -79,9 +94,9 @@ public class BattleHandler : MonoBehaviour
             }
         }
 
-        if (CharacterSystem.characters.ContainsKey("Undead"))
+        if (Character.characters.ContainsKey("Undead"))
         {
-            var undead = CharacterSystem.characters["Undead"];
+            var undead = Character.characters["Undead"];
 
             if (undead.isAlive == true)
             {
@@ -90,10 +105,5 @@ public class BattleHandler : MonoBehaviour
                 state = State.ENDED;
             }
         }
-    }
-
-    private void ListenCharacter(object sender, CharacterSystem.OnCharacterSpawnedEA e)
-    {
-        e.character.OnTurnEnded += ChangeState;
     }
 }

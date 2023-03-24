@@ -11,7 +11,7 @@ public class IA : MonoBehaviour
     {
         if (controlledC.isActive == true)
         {
-            controlledC.Rage(CharacterSystem.characters["Healer"]);
+            controlledC.Rage(Character.characters["Healer"]);
             controlledC.EndTurn();
         }
     }
