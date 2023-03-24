@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    public enum Controller { PLAYER, IA }
 
-    public Controller controller;
     public Character controlledC;
 
     // Update is called once per frame
     void Update()
     {
-        switch (controller)
+        if (controlledC.isActive == true)
         {
-            case Controller.PLAYER:
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    //controlledC.Heal();
-
-                }
-                break;
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //controlledC.Heal();
+                controlledC.Heal(CharacterSystem.characters["Undead"]);
+                controlledC.EndTurn();
+            }
         }
-       
     }
+
 }
+

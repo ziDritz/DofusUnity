@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d28e31a74ed615499bfc4becc76b27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfCharacterBattle: {fileID: 9071136608364184290, guid: 69439c07797f1954da787850332c4e76, type: 3}
 --- !u!4 &223275224
 Transform:
   m_ObjectHideFlags: 0
@@ -281,6 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa92801192dd03a4395a74ed157ae9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pfHealer: {fileID: 7267178760517858748, guid: 764480db8cc251b4db93a8622e7b130e, type: 3}
+  pfUndead: {fileID: 3471545347144346782, guid: b2767b94ee6068343817d825afd2e9aa, type: 3}
 --- !u!4 &1814339725
 Transform:
   m_ObjectHideFlags: 0

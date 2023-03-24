@@ -1,62 +1,99 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class BattleHandler : MonoBehaviour
 {
-    [SerializeField] private Transform pfCharacterBattle;
+    public static BattleHandler Instance;
 
-    private enum State { HEALERTURN, WOUNDEDTURN }
+    // State
+    public enum State { INIT, HEALERTURN, UNDEADTURN, ENDED }
     private State state;
 
-    private Character healer;
-    private Character wounded;
+    // Events
+    public event EventHandler<OnStateChangedEA> OnStateChanged;
+    public class OnStateChangedEA : EventArgs
+    {
+        public State state;
+    }
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
-        healer = SpawnCharacter();
-        wounded = SpawnCharacter();
-        wounded.isAlive = false;
-        state = State.HEALERTURN;
+        //Subscribe to events
+        CharacterSystem.Instance.OnCharacterSpawned += ListenCharacter;
+
+        state = State.INIT;
+
     }
 
     private void Update()
     {
         switch (state)
         {
+            case State.INIT:
+                state = State.UNDEADTURN; // on le met en UNDEADTURN comme ça ChangeState change en HEALERTURN
+                print("Battle ready");
+                ChangeState(this, new OnStateChangedEA { state = state });
+                break;
+        }
+    }
 
+    private void ChangeState(object sender, EventArgs e)
+    {
+        IsBattleOver();
+
+        switch (state)
+        {
             case State.HEALERTURN:
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    healer.Heal(wounded);
-                    state = State.WOUNDEDTURN;
-                    IsBattleOver();
-                }
+                state = State.UNDEADTURN;
+                print("Undead's turn");
                 break;
 
-            case State.WOUNDEDTURN:
-                wounded.Rage(healer);
+            case State.UNDEADTURN:
                 state = State.HEALERTURN;
-                IsBattleOver();
+                print("Healer's Turn");
                 break;
         }
 
-    }
-
-    private Character SpawnCharacter()
-    {
-        Transform characterTransform = Instantiate(pfCharacterBattle);
-        Character character = characterTransform.GetComponent<Character>();
-
-        return character;
+        OnStateChanged?.Invoke(this, new OnStateChangedEA { state = state });
     }
 
     private void IsBattleOver()
     {
-        if (healer.isAlive == false) 
+        if (CharacterSystem.characters.ContainsKey("Healer"))
         {
-            print("Battle is over");
-            Destroy(this);
+            var healer = CharacterSystem.characters["Healer"];
+
+            if (healer.isAlive == false)
+            {
+                print("Healer is dead !");
+                print("Battle is over");
+                state = State.ENDED;
+            }
         }
+
+        if (CharacterSystem.characters.ContainsKey("Undead"))
+        {
+            var undead = CharacterSystem.characters["Undead"];
+
+            if (undead.isAlive == true)
+            {
+                print("Undead is alive !");
+                print("Battle is over");
+                state = State.ENDED;
+            }
+        }
+    }
+
+    private void ListenCharacter(object sender, CharacterSystem.OnCharacterSpawnedEA e)
+    {
+        e.character.OnTurnEnded += ChangeState;
     }
 }

@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cName: 
   basePower: 10
-  finalPower: 0
   isAlive: 1
+  isActive: 0
   healthSystem: {fileID: 3843469711290289382}
 --- !u!114 &3843469711290289382
 MonoBehaviour:
@@ -63,4 +63,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 9014763573484107177}
-  healthMax: 50
+  health: 50

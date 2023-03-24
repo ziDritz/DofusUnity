@@ -3,48 +3,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Character : MonoBehaviour
 {
-
+    // Caracteritics
     public string cName;
     public int basePower;
-    public int finalPower;
-    public bool isAlive;
 
+    // States
+    public bool isAlive;
+    public bool isActive;
+
+    // Sub-systems
     public HealthSystem healthSystem;
 
+    // Events
+    public event EventHandler OnTurnEnded;
 
+    private void Start()
+    {
+        // Subscribe to events
+        BattleHandler.Instance.OnStateChanged += Activate;
+    }
+
+
+    // Actions
     public void Heal(Character target)
     {
         var mutliplier = UnityEngine.Random.Range(1.2f, 1.5f);
-        finalPower = (int)System.Math.Floor(basePower * mutliplier);
-        print("Healer healed with " + finalPower + " power");
+        var finalPower = (int)System.Math.Floor(basePower * mutliplier);
+        print(cName + " use Heal");
         target.Regenerate(finalPower);
     }
 
     public void Rage(Character target)
     {
         var mutliplier = UnityEngine.Random.Range(1.2f, 1.5f);
-        finalPower = (int)System.Math.Floor(basePower * mutliplier);
-        print("Wounded hit with " + finalPower + " power");
+        var finalPower = (int)System.Math.Floor(basePower * mutliplier);
+        print(cName + " use Rage");
         target.Tank(finalPower);
     }
 
     public void Tank(int amount)
     {
         healthSystem.SubtractHealth(amount);
-        print("Healer tanked " + amount + " damages");
-        print("Healer's current health : " + healthSystem.GetHealth());
+        print(cName + " tanked " + amount + " damages");
     }
 
     public void Regenerate(int amount)
     {
         healthSystem.AddHealth(amount);
-        print("Wounded regenerate " + amount + " HP");
-        print("Wounded's current health : " + healthSystem.GetHealth());
+        print(cName + " regenerate " + amount + " HP");
     }
 
+    public virtual void Activate(object sender, BattleHandler.OnStateChangedEA e)
+    {
+    }
+
+    public void EndTurn()
+    {
+        isActive = false;
+        print(cName + " ended his turn");
+        OnTurnEnded?.Invoke(this, EventArgs.Empty);
+    }
 
 }
