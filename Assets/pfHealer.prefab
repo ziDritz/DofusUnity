@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cName: Healer
-  basePower: 10
+  initiative: 100
   isAlive: 1
   isActive: 0
   healthSystem: {fileID: 3201968547355343800}

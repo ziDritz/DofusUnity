@@ -22,6 +22,9 @@ public class BattleHandler : MonoBehaviour
         public State state;
     }
 
+    // Character order
+    List<Character> TurnOrder = new();
+
     private void Awake()
     {
         Instance = this;
@@ -31,6 +34,7 @@ public class BattleHandler : MonoBehaviour
     {
         state = State.INIT;
         Spawn();
+        OrderCharacters();
     }
 
     private void Update()
@@ -51,14 +55,21 @@ public class BattleHandler : MonoBehaviour
         Transform healerTransform = Instantiate(pfHealer);
         Character healer = healerTransform.GetComponent<Character>();
         healer.OnTurnEnded += ChangeState;
+        TurnOrder.Add(healer);
         Character.characters.Add(healer.cName, healer);
 
         // Spawn Undead
         Transform undeadTransform = Instantiate(pfUndead);
         Character undead = undeadTransform.GetComponent<Character>();
         undead.OnTurnEnded += ChangeState;
+        TurnOrder.Add(undead);
         Character.characters.Add(undead.cName, undead);
     }
+
+    private void OrderCharacters()
+    {
+        TurnOrder.Sort((c1, c2) => c1.initiative.CompareTo(c2.initiative));
+    } 
 
     private void ChangeState(object sender, EventArgs e)
     {

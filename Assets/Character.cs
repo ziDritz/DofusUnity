@@ -10,11 +10,14 @@ public class Character : MonoBehaviour
 
     // Caracteritics
     public string cName;
-    public int basePower;
+    public int BasePower { get; private set; }
+
+    public int initiative;
 
     // States
     public bool isAlive;
     public bool isActive;
+
 
     // Sub-systems
     public HealthSystem healthSystem;
@@ -29,11 +32,12 @@ public class Character : MonoBehaviour
     }
 
 
+
     // Actions
     public void Heal(Character target)
     {
         var mutliplier = UnityEngine.Random.Range(1.2f, 1.5f);
-        var finalPower = (int)System.Math.Floor(basePower * mutliplier);
+        var finalPower = (int)System.Math.Floor(BasePower * mutliplier);
         print(cName + " use Heal");
         target.Regenerate(finalPower);
     }
@@ -41,7 +45,7 @@ public class Character : MonoBehaviour
     public void Rage(Character target)
     {
         var mutliplier = UnityEngine.Random.Range(1.2f, 1.5f);
-        var finalPower = (int)System.Math.Floor(basePower * mutliplier);
+        var finalPower = (int)System.Math.Floor(BasePower * mutliplier);
         print(cName + " use Rage");
         target.Tank(finalPower);
     }
@@ -68,5 +72,19 @@ public class Character : MonoBehaviour
         print(cName + " ended his turn");
         OnTurnEnded?.Invoke(this, EventArgs.Empty);
     }
+
+    public int CompareTo(Character other)
+    {
+        if (other == null) return 1;
+
+        return initiative - other.initiative;
+    }
+
+    //public int CompareTo(Character other)
+    //{
+    //    if (other == null) return 1;
+
+    //    return initiative - other.initiative;
+    //}
 
 }

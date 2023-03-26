@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cName: Undead
-  basePower: 10
+  initiative: 0
   isAlive: 0
   isActive: 0
   healthSystem: {fileID: 8689961426104246938}

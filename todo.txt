@@ -1,12 +1,6 @@
-
-character spawner dans game handler
-static dicttionnaire unit dans unit
-
-character :
-	initiative
-
-battlehandler :
-	determine l'ordre de jeu
+changer spwaning des perso (scriptable object ?)
 
 2e healer :
 	boost();
+
+prefab =/= scriptable object ?
