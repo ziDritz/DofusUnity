@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f58e318713ac14b835527abb3849be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cName: 
-  basePower: 10
+  healerPrefab: {fileID: 7215837039271232247, guid: 764480db8cc251b4db93a8622e7b130e, type: 3}
+  undeadPrefab: {fileID: 3518596653756095445, guid: b2767b94ee6068343817d825afd2e9aa, type: 3}
+  cData: {fileID: 0}
   isAlive: 1
   isActive: 0
   healthSystem: {fileID: 3843469711290289382}

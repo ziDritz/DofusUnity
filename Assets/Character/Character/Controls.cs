@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-
     public Character controlledC;
 
+    private void Awake()
+    {
+        controlledC = GetComponent<Character>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -14,8 +17,7 @@ public class Controls : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //controlledC.Heal();
-                controlledC.Heal(Character.characters["Undead"]);
+                //controlledC.Heal(CharacterSystem.characters["Undead"]);
                 controlledC.EndTurn();
             }
         }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5606505132207648380
+--- !u!1001 &1817503971002611550
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,23 +9,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3843469711290289382, guid: 69439c07797f1954da787850332c4e76, type: 3}
       propertyPath: health
-      value: -100
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3843469711290289382, guid: 69439c07797f1954da787850332c4e76, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 4363122546338029028}
+      objectReference: {fileID: 0}
     - target: {fileID: 7881624259413641696, guid: 69439c07797f1954da787850332c4e76, type: 3}
       propertyPath: m_Name
-      value: pfUndead
+      value: pfHealer
       objectReference: {fileID: 0}
+    - target: {fileID: 7881624259413641696, guid: 69439c07797f1954da787850332c4e76, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014763573484107177, guid: 69439c07797f1954da787850332c4e76, type: 3}
+      propertyPath: cData
+      value: 
+      objectReference: {fileID: 11400000, guid: f3ae6c70336bef44cbdb7e28327cb0d8, type: 2}
     - target: {fileID: 9014763573484107177, guid: 69439c07797f1954da787850332c4e76, type: 3}
       propertyPath: cName
-      value: Undead
-      objectReference: {fileID: 0}
-    - target: {fileID: 9014763573484107177, guid: 69439c07797f1954da787850332c4e76, type: 3}
-      propertyPath: isAlive
-      value: 0
+      value: Healer
       objectReference: {fileID: 0}
     - target: {fileID: 9071136608364184290, guid: 69439c07797f1954da787850332c4e76, type: 3}
       propertyPath: m_RootOrder
@@ -71,52 +75,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9014763573484107177, guid: 69439c07797f1954da787850332c4e76, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69439c07797f1954da787850332c4e76, type: 3}
---- !u!1 &2355216818569193372 stripped
+--- !u!1 &8383509780169981630 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7881624259413641696, guid: 69439c07797f1954da787850332c4e76, type: 3}
-  m_PrefabInstance: {fileID: 5606505132207648380}
+  m_PrefabInstance: {fileID: 1817503971002611550}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4343148684078859151
+--- !u!114 &-4880574833540307610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2355216818569193372}
+  m_GameObject: {fileID: 8383509780169981630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf89caa95cb59c499be3b46bb0b5efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 708c574ec976d1d4282c4e71d1b231a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledC: {fileID: 4363122546338029028}
---- !u!114 &4363122546338029028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2355216818569193372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f71febb76ea2cf44a13a130c1a2d0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cName: Undead
-  initiative: 0
-  isAlive: 0
-  isActive: 0
-  healthSystem: {fileID: 8689961426104246938}
---- !u!114 &8689961426104246938 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3843469711290289382, guid: 69439c07797f1954da787850332c4e76, type: 3}
-  m_PrefabInstance: {fileID: 5606505132207648380}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2355216818569193372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe09afab0dc1bec4c90cae3ef5ac1cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  controlledC: {fileID: 0}

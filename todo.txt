@@ -1,4 +1,9 @@
-changer spwaning des perso (scriptable object ?)
+Start()
+// On set up tout ce qui est relatif à l'instance SEULEMENT
+
+SetInterinstance ()
+// On setup les relations entre instances
+// event + get component
 
 2e healer :
 	boost();

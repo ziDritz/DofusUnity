@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 223275224}
   - component: {fileID: 223275223}
+  - component: {fileID: 223275225}
+  - component: {fileID: 223275226}
   m_Layer: 0
   m_Name: BattleHandler
   m_TagString: Untagged
@@ -152,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d28e31a74ed615499bfc4becc76b27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfHealer: {fileID: 7267178760517858748, guid: 764480db8cc251b4db93a8622e7b130e, type: 3}
-  pfUndead: {fileID: 3471545347144346782, guid: b2767b94ee6068343817d825afd2e9aa, type: 3}
+  characterSystem: {fileID: 223275225}
+  turnSystem: {fileID: 223275226}
 --- !u!4 &223275224
 Transform:
   m_ObjectHideFlags: 0
@@ -169,6 +171,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &223275225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223275222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fe48f6e940fd948949998a4a0c7873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BattleHandler: {fileID: 223275223}
+  characters: []
+  healerPrefab: {fileID: 7215837039271232247, guid: 764480db8cc251b4db93a8622e7b130e, type: 3}
+  undeadPrefab: {fileID: 3518596653756095445, guid: b2767b94ee6068343817d825afd2e9aa, type: 3}
+  undeadData: {fileID: 11400000, guid: a84d2b1de10464247bae84b205b8e7b1, type: 2}
+  slowmoData: {fileID: 11400000, guid: 1be4bb7f46db5404a8ac4e03a9c1d9e4, type: 2}
+  speedoData: {fileID: 11400000, guid: e12c6703b400ade4e9d454b9262e8f4c, type: 2}
+--- !u!114 &223275226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223275222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8131ee7b2348024d904bd5419fd241f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSystem: {fileID: 223275225}
+  turnState: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
