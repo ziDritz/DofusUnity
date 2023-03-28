@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    public Character controlledC;
+    [SerializeField] private Character controlledC;
+    [SerializeField] private CharacterSystem characterSystem;
 
-    private void Awake()
+    private void Start()
     {
-        controlledC = GetComponent<Character>();
+        characterSystem = GetComponentInParent<CharacterSystem>();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (controlledC.isActive == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //controlledC.Heal(CharacterSystem.characters["Undead"]);
-                controlledC.EndTurn();
-            }
-        }
-    }
+
 
 }
 

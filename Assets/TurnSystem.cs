@@ -25,7 +25,7 @@ public class TurnSystem : MonoBehaviour
     private void CharacterSystem_OnAllCharacterSpawned(object sender, EventArgs e)
     {
         // Set Turn Order
-        List<Character> TurnOrderList = new List<Character>(characterSystem.characters);
+        List<Character> TurnOrderList = new List<Character>(characterSystem.charactersList);
         TurnOrderList.Sort((c1, c2) => c2.Initiative.CompareTo(c1.Initiative));
 
         print("----------------------------------");
@@ -38,7 +38,7 @@ public class TurnSystem : MonoBehaviour
         }
 
         // Set turnStateMax
-        turnStateMax = characterSystem.characters.Count;
+        turnStateMax = characterSystem.charactersList.Count;
     }
 
     private void ChangeTurnState(object sender, EventArgs e)

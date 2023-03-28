@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9071136608364184290}
   - component: {fileID: 9014763573484107177}
   - component: {fileID: 3843469711290289382}
+  - component: {fileID: 2372147886475970135}
   m_Layer: 0
   m_Name: pfCharacter
   m_TagString: Untagged
@@ -45,12 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f58e318713ac14b835527abb3849be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healerPrefab: {fileID: 7215837039271232247, guid: 764480db8cc251b4db93a8622e7b130e, type: 3}
-  undeadPrefab: {fileID: 3518596653756095445, guid: b2767b94ee6068343817d825afd2e9aa, type: 3}
-  cData: {fileID: 0}
+  battleHandler: {fileID: 0}
+  characterSystem: {fileID: 0}
+  turnSystem: {fileID: 0}
+  boostBonus: 0
+  TurnAssigned: 0
   isAlive: 1
   isActive: 0
   healthSystem: {fileID: 3843469711290289382}
+  actionSystem: {fileID: 0}
 --- !u!114 &3843469711290289382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,3 +69,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 9014763573484107177}
   health: 50
+--- !u!114 &2372147886475970135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881624259413641696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b85a9b7a27bc3a4783ae67fc7362cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSystem: {fileID: 0}
+  caster: {fileID: 9014763573484107177}
+  target: {fileID: 0}
+  spells: []
+  iSpells: 0

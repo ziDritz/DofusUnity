@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     // Caracteristics
     public string CName { get; private set; }
     public int BasePower { get; private set; }
+    public int boostBonus;
     public int Initiative { get; private set; }
     public int TurnAssigned;
     
@@ -22,6 +23,7 @@ public class Character : MonoBehaviour
 
     // Sub-systems
     public HealthSystem healthSystem;
+    public SpellSystem actionSystem;
 
     // Events
     public event EventHandler OnTurnEnded;
@@ -43,34 +45,9 @@ public class Character : MonoBehaviour
 
     }
 
-    // Actions methods
-    public void Heal(Character target)
-    {
-        var mutliplier = UnityEngine.Random.Range(1.2f, 1.5f);
-        var finalPower = (int)System.Math.Floor(BasePower * mutliplier);
-        print(CName + " use Heal");
-        target.Regenerate(finalPower);
-    }
 
-    public void Rage(Character target)
-    {
-        var mutliplier = UnityEngine.Random.Range(1.2f, 1.5f);
-        var finalPower = (int)System.Math.Floor(BasePower * mutliplier);
-        print(CName + " use Rage");
-        target.Tank(finalPower);
-    }
 
-    public void Tank(int amount)
-    {
-        healthSystem.SubtractHealth(amount);
-        print(CName + " tanked " + amount + " damages");
-    }
-
-    public void Regenerate(int amount)
-    {
-        healthSystem.AddHealth(amount);
-        print(CName + " regenerate " + amount + " HP");
-    }
+    // Turn Methods
 
     public void EndTurn()
     {
@@ -79,22 +56,23 @@ public class Character : MonoBehaviour
         OnTurnEnded?.Invoke(this, EventArgs.Empty);
     }
 
+    private void TryToActivate(object sender, EventArgs e)
+    {
+        if (TurnAssigned == turnSystem.turnState)
+        {
+            isActive = true;
+            print("----------------------------------");
+            print(CName + " is active");
+        }
+        else isActive = false;
+    }
+
+    // Utility Methods
+
     public int CompareTo(Character other)
     {
         if (other == null) return 1;
 
         return Initiative - other.Initiative;
     }
-
-    private void TryToActivate(object sender, EventArgs e)
-    {
-        if (TurnAssigned == turnSystem.turnState)
-        {
-            isActive = true;
-            print(CName + " is active");
-        }
-        else isActive = false;
-    }
-
-
 }

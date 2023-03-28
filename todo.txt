@@ -1,11 +1,12 @@
-Start()
-// On set up tout ce qui est relatif à l'instance SEULEMENT
+choose target
 
-SetInterinstance ()
-// On setup les relations entre instances
-// event + get component
+if press a 
+	CName = Speedo
 
-2e healer :
-	boost();
 
-prefab =/= scriptable object ?
+
+
+
+
+scriptable pour data
+héritage pour fonction

@@ -4,9 +4,8 @@ using System;
 
 public class CharacterSystem : MonoBehaviour
 {
+    // Supra-system
     [SerializeField] private BattleHandler BattleHandler;
-
-    public List<Character> characters;
 
     // Event
     public event EventHandler<OnSpawnEA> OnSpawn;
@@ -25,10 +24,15 @@ public class CharacterSystem : MonoBehaviour
     [SerializeField] private CData slowmoData;
     [SerializeField] private CData speedoData;
 
+    // Collections
+    public List<Character> charactersList;
+    public Dictionary<string, Character> charactersDictionnary;
+
     // State method
     public void Init()
     {
-        characters = new List<Character>();
+        charactersList = new List<Character>();
+        charactersDictionnary = new Dictionary<string, Character>();
     }
 
     public void PrepareBattle()
@@ -44,7 +48,8 @@ public class CharacterSystem : MonoBehaviour
     {
         var c = Instantiate(prefab, this.GetComponent<Transform>());
         c.Init(cData);
-        characters.Add(c);
+        charactersList.Add(c);
+        charactersDictionnary.Add(c.CName, c);
 
         OnSpawn?.Invoke(null, new OnSpawnEA { character = c });
     }
